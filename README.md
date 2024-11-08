@@ -1,33 +1,33 @@
-
 # The Curious Code Monkey
-[TheCuriousCodeMonkey](https://jameshusband.github.io/TheCuriousCodeMonkey/)
+
+[The Curious Code Monkey](https://jameshusband.github.io/TheCuriousCodeMonkey/)
+
 <p align="center">
-<img src="https://i.ibb.co/wzPZB16/curious-code-monkey-github.png" width="900px" />
+  <img src="https://i.ibb.co/wzPZB16/curious-code-monkey-github.png" width="900px" />
 </p>
 
 ---
- 
+
+### About
+
 <p>
  <img align="left" width="300" src="https://i.ibb.co/RhnggMH/2.png" alt="Coding gif" />
-<strong><u>The Curious Code Monkey</u></strong>
 
-A self taught developers journey of discovery though principles and patterns.
+**The Curious Code Monkey** is a blog documenting a self-taught developer’s journey through the world of coding principles, design patterns, and best practices. With a focus on clean, maintainable code, this project aims to support developers in honing their craft.
 
- 
- - 🙊 ***"Speak No Imperative "***
- - 🙉 ***"Hear No Assumptions"***
- - 🙈 ***"See No Makeshift"***
+This platform follows three guiding principles:
 
+- 🙊 **"Speak No Imperative"** — Embracing functional approaches over imperative code.
+- 🙉 **"Hear No Assumptions"** — Prioritizing clear, unambiguous code.
+- 🙈 **"See No Makeshift"** — Favoring robust solutions over quick fixes.
 </p>
-</br>
 
-## Getting Started
-To set up the project locally, follow these commands:
+<br/>
 
-'''bash
-Copy code
+### Getting Started
+
+To set up and run the project locally, use the following commands:
+
+```bash
 npm install
 npx nx run curious-monkey:serve
-'''
-
-
