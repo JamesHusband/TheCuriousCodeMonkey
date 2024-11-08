@@ -21,6 +21,13 @@ A self taught developers journey of discovery though principles and patterns.
 </p>
 </br>
 
+## Getting Started
+To set up the project locally, follow these commands:
 
+'''bash
+Copy code
+npm install
+npx nx run curious-monkey:serve
+'''
 
 
