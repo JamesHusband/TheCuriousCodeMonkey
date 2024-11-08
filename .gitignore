@@ -1,0 +1,46 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+dist
+tmp
+/out-tsc
+
+# dependencies
+node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+.nx/cache
+apps/curious-monkey/build/curious-monkey/curious-code-monkey.png
+apps/curious-monkey/build/curious-monkey/favicon.ico
+apps/curious-monkey/build/curious-monkey/index.html
+apps/curious-monkey/build/curious-monkey/assets/index-CWIW4wbn.css
+apps/curious-monkey/build/curious-monkey/assets/index-pz8a1p0v.js

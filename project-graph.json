@@ -1,0 +1,274 @@
+{
+  "graph": {
+    "nodes": {
+      "curious-monkey-e2e": {
+        "name": "curious-monkey-e2e",
+        "type": "e2e",
+        "data": {
+          "root": "apps/curious-monkey-e2e",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "options": {
+                "cwd": "apps/curious-monkey-e2e",
+                "command": "eslint ."
+              },
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{projectRoot}/.eslintrc.json",
+                "{workspaceRoot}/tools/eslint-rules/**/*",
+                {
+                  "externalDependencies": [
+                    "eslint"
+                  ]
+                }
+              ],
+              "executor": "nx:run-commands",
+              "configurations": {}
+            },
+            "e2e": {
+              "options": {
+                "cwd": "apps/curious-monkey-e2e",
+                "command": "playwright test"
+              },
+              "cache": true,
+              "inputs": [
+                "default",
+                "^production"
+              ],
+              "outputs": [
+                "{workspaceRoot}/dist/.playwright/apps/curious-monkey-e2e/playwright-report",
+                "{workspaceRoot}/dist/.playwright/apps/curious-monkey-e2e/test-output"
+              ],
+              "executor": "nx:run-commands",
+              "configurations": {}
+            },
+            "e2e-ci--src/example.spec.ts": {
+              "options": {
+                "cwd": "apps/curious-monkey-e2e",
+                "command": "playwright test src/example.spec.ts"
+              },
+              "cache": true,
+              "inputs": [
+                "default",
+                "^production"
+              ],
+              "outputs": [
+                "{workspaceRoot}/dist/.playwright/apps/curious-monkey-e2e/playwright-report",
+                "{workspaceRoot}/dist/.playwright/apps/curious-monkey-e2e/test-output"
+              ],
+              "executor": "nx:run-commands",
+              "configurations": {}
+            },
+            "e2e-ci": {
+              "executor": "nx:noop",
+              "cache": true,
+              "inputs": [
+                "default",
+                "^production"
+              ],
+              "outputs": [
+                "{workspaceRoot}/dist/.playwright/apps/curious-monkey-e2e/playwright-report",
+                "{workspaceRoot}/dist/.playwright/apps/curious-monkey-e2e/test-output"
+              ],
+              "dependsOn": [
+                {
+                  "target": "e2e-ci--src/example.spec.ts",
+                  "projects": "self",
+                  "params": "forward"
+                }
+              ],
+              "options": {},
+              "configurations": {}
+            }
+          },
+          "name": "curious-monkey-e2e",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "projectType": "application",
+          "sourceRoot": "apps/curious-monkey-e2e/src",
+          "implicitDependencies": [
+            "curious-monkey"
+          ],
+          "tags": []
+        }
+      },
+      "curious-monkey": {
+        "name": "curious-monkey",
+        "type": "app",
+        "data": {
+          "root": "apps/curious-monkey",
+          "targets": {
+            "build": {
+              "options": {
+                "cwd": "apps/curious-monkey",
+                "command": "vite build"
+              },
+              "cache": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production",
+                {
+                  "externalDependencies": [
+                    "vite"
+                  ]
+                }
+              ],
+              "outputs": [
+                "{projectRoot}/build/curious-monkey"
+              ],
+              "executor": "nx:run-commands",
+              "configurations": {}
+            },
+            "serve": {
+              "options": {
+                "cwd": "apps/curious-monkey",
+                "command": "vite serve"
+              },
+              "executor": "nx:run-commands",
+              "configurations": {}
+            },
+            "preview": {
+              "options": {
+                "cwd": "apps/curious-monkey",
+                "command": "vite preview"
+              },
+              "executor": "nx:run-commands",
+              "configurations": {}
+            },
+            "serve-static": {
+              "executor": "@nx/web:file-server",
+              "options": {
+                "buildTarget": "build",
+                "spa": true
+              },
+              "configurations": {}
+            },
+            "test": {
+              "options": {
+                "cwd": "apps/curious-monkey",
+                "command": "vitest run"
+              },
+              "cache": true,
+              "inputs": [
+                "default",
+                "^production",
+                {
+                  "externalDependencies": [
+                    "vitest"
+                  ]
+                }
+              ],
+              "outputs": [
+                "{workspaceRoot}/coverage/apps/curious-monkey"
+              ],
+              "executor": "nx:run-commands",
+              "configurations": {}
+            },
+            "lint": {
+              "cache": true,
+              "options": {
+                "cwd": "apps/curious-monkey",
+                "command": "eslint ."
+              },
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{projectRoot}/.eslintrc.json",
+                "{workspaceRoot}/tools/eslint-rules/**/*",
+                {
+                  "externalDependencies": [
+                    "eslint"
+                  ]
+                }
+              ],
+              "executor": "nx:run-commands",
+              "configurations": {}
+            }
+          },
+          "name": "curious-monkey",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "apps/curious-monkey/src",
+          "projectType": "application",
+          "tags": [],
+          "implicitDependencies": []
+        }
+      },
+      "shared-ui": {
+        "name": "shared-ui",
+        "type": "lib",
+        "data": {
+          "root": "libs/shared/ui",
+          "targets": {
+            "test": {
+              "options": {
+                "cwd": "libs/shared/ui",
+                "command": "vitest run"
+              },
+              "cache": true,
+              "inputs": [
+                "default",
+                "^production",
+                {
+                  "externalDependencies": [
+                    "vitest"
+                  ]
+                }
+              ],
+              "outputs": [
+                "{workspaceRoot}/coverage/libs/shared/ui"
+              ],
+              "executor": "nx:run-commands",
+              "configurations": {}
+            },
+            "lint": {
+              "cache": true,
+              "options": {
+                "cwd": "libs/shared/ui",
+                "command": "eslint ."
+              },
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{projectRoot}/.eslintrc.json",
+                "{workspaceRoot}/tools/eslint-rules/**/*",
+                {
+                  "externalDependencies": [
+                    "eslint"
+                  ]
+                }
+              ],
+              "executor": "nx:run-commands",
+              "configurations": {}
+            }
+          },
+          "name": "shared-ui",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/shared/ui/src",
+          "projectType": "library",
+          "tags": [],
+          "implicitDependencies": []
+        }
+      }
+    },
+    "dependencies": {
+      "curious-monkey-e2e": [
+        {
+          "source": "curious-monkey-e2e",
+          "target": "curious-monkey",
+          "type": "implicit"
+        }
+      ],
+      "curious-monkey": [],
+      "shared-ui": []
+    }
+  },
+  "affectedProjects": [],
+  "criticalPath": []
+}
