@@ -1,14 +1,10 @@
 # The Curious Code Monkey
 
-[The Curious Code Monkey](https://jameshusband.github.io/TheCuriousCodeMonkey/)
-
 <p align="center">
   <img src="https://i.ibb.co/wzPZB16/curious-code-monkey-github.png" width="900px" />
 </p>
 
 ---
-
-### About
 
 <p>
  <img align="left" width="300" src="https://i.ibb.co/RhnggMH/2.png" alt="Coding gif" />
