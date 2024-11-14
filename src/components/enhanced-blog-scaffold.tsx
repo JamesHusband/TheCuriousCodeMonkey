@@ -3,12 +3,11 @@
 import { useState } from "react";
 import { Filter, Search, Mail, Terminal } from "lucide-react";
 
-export default function Component() {
-  // const [darkMode, setDarkMode] = useState(false);
+export function EnhancedBlogScaffold() {
+  const [darkMode, setDarkMode] = useState(false);
 
-  const darkMode = false;
-
-  // const toggleDarkMode = () => setDarkMode(!darkMode);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   return (
     <div className={`flex h-screen ${darkMode ? "dark" : ""}`}>
@@ -70,6 +69,11 @@ export default function Component() {
         <div className="p-4">
           <PaginationPlaceholder />
         </div>
+
+        {/* Newsletter Signup Placeholder */}
+        <div className="p-4">
+          <NewsletterSignupPlaceholder />
+        </div>
       </main>
     </div>
   );
@@ -81,10 +85,13 @@ function TerminalPlaceholder() {
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center">
           <Terminal className="w-5 h-5 mr-2" />
-          <span>Ook!</span>
+          <span>Terminal</span>
         </div>
-        <span className="text-gray-500">Return</span>
+        <span className="text-gray-500">Placeholder</span>
       </div>
+      <div className="h-4 w-3/4 bg-green-900 rounded mb-2"></div>
+      <div className="h-4 w-1/2 bg-green-900 rounded mb-2"></div>
+      <div className="h-4 w-5/6 bg-green-900 rounded"></div>
     </div>
   );
 }
@@ -159,6 +166,17 @@ function PaginationPlaceholder() {
       <span className="text-gray-600 dark:text-gray-300">
         Pagination Placeholder
       </span>
+    </div>
+  );
+}
+
+function NewsletterSignupPlaceholder() {
+  return (
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-center justify-between">
+      <span className="text-gray-600 dark:text-gray-300">
+        Newsletter Signup Placeholder
+      </span>
+      <Mail className="w-5 h-5 text-gray-400" />
     </div>
   );
 }
