@@ -452,10 +452,55 @@ export default function Component() {
           </div>
 
           <div className="p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {Array.from({ length: 6 }, (_, i) => (
-                <CardPlaceholder key={i} />
-              ))}
+            <div className="space-y-8">
+              <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-all duration-300 ease-in-out hover:shadow-lg">
+                <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                  <time dateTime="2023-12-14">December 14, 2023</time>
+                  <span>•</span>
+                  <span>10 min read</span>
+                  <span>•</span>
+                  <span>Writing</span>
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                  The Craft of Clarity: Writing Clean Code in a Complex World
+                </h2>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3">
+                  In the ever-evolving landscape of software development,
+                  writing clean code is more than just a best practice—it's an
+                  art form. This essay explores the principles of crafting
+                  clear, maintainable code, drawing parallels between the
+                  discipline of writing prose and the craft of programming.
+                  We'll delve into how clarity in code not only makes our work
+                  more maintainable but also more enjoyable for both ourselves
+                  and our fellow developers.
+                </p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <img
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-kPKtHawIQ4HnJREMS9NfnjEqidHyqh.png"
+                      alt="Author"
+                      className="w-10 h-10 rounded-full"
+                    />
+                    <div>
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">
+                        James Husband
+                      </p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Software Engineer
+                      </p>
+                    </div>
+                  </div>
+                  <Button
+                    className="bg-red-600 hover:bg-red-700 text-white"
+                    onClick={() =>
+                      window.open("/blog/the-craft-of-clarity", "_self")
+                    }
+                  >
+                    Read More
+                  </Button>
+                </div>
+              </article>
+              {/* More blog posts will go here */}
             </div>
           </div>
 
@@ -522,16 +567,6 @@ function FilterPlaceholder() {
         Filter Placeholder
       </span>
       <Filter className="w-5 h-5 text-gray-400" />
-    </div>
-  );
-}
-
-function CardPlaceholder() {
-  return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-all duration-300 ease-in-out hover:shadow-lg transform hover:-translate-y-1">
-      <div className="h-6 w-3/4 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
-      <div className="h-4 w-full bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
-      <div className="h-4 w-5/6 bg-gray-200 dark:bg-gray-700 rounded"></div>
     </div>
   );
 }
