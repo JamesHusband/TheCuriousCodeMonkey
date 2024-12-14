@@ -152,8 +152,8 @@ export default function Component() {
       {/* Hero Section */}
       <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 flex">
-          <div className="w-1/2 bg-[#ff4b1f]"></div>
-          <div className="w-1/2 bg-[#1f2937]"></div>
+          <div className="w-1/2 bg-red-700"></div>
+          <div className="w-1/2 bg-gray-800"></div>
         </div>
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
           <div className="relative w-[500px] h-[500px] mx-auto mb-8">
@@ -185,7 +185,7 @@ export default function Component() {
           </div>
           <div
             ref={titleRef}
-            className={`bg-black bg-opacity-75 p-6 rounded-lg transform transition-all duration-1000 ${
+            className={`bg-gray-800 bg-opacity-95 p-8 rounded-lg transform transition-all duration-1000 shadow-2xl border border-red-700/20 backdrop-blur-sm ${
               titleVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-10"
@@ -194,12 +194,15 @@ export default function Component() {
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
             }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              THE CURIOUS CODE MONKEY
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-200">
-              A FULL STACK DEVELOPER BLOG
-            </p>
+            <div className="space-y-6">
+              <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-700 mb-2">
+                THE CURIOUS CODE MONKEY
+              </h1>
+              <div className="h-px w-3/4 mx-auto bg-gradient-to-r from-transparent via-red-700/50 to-transparent"></div>
+              <p className="text-xl md:text-2xl text-gray-300 font-light tracking-wide">
+                Exploring the Digital Jungle, One Line of Code at a Time
+              </p>
+            </div>
           </div>
         </div>
         <div
@@ -207,8 +210,10 @@ export default function Component() {
             !hasAnimated.current ? "opacity-100" : "opacity-0"
           }`}
         >
-          <p className="text-sm mb-2 text-center">Scroll to reveal</p>
-          <ChevronDown className="w-8 h-8 animate-bounce" />
+          <p className="text-sm mb-2 text-center text-gray-300 tracking-wider font-light">
+            Scroll to reveal
+          </p>
+          <ChevronDown className="w-8 h-8 animate-bounce text-red-500" />
         </div>
       </section>
 
