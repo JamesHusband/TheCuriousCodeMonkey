@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { Sidebar } from "@/lib/components/Sidebar";
 
 export default function Component() {
   const [darkMode, setDarkMode] = useState(false);
@@ -413,29 +414,7 @@ export default function Component() {
         className={`flex min-h-screen ${showToolbar ? "pb-12" : ""}`}
         id="main-content"
       >
-        {/* Sidebar */}
-        <aside className="w-64 bg-gray-800 text-white flex flex-col">
-          <div className="p-6 bg-red-700 flex justify-center items-center">
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-kPKtHawIQ4HnJREMS9NfnjEqidHyqh.png"
-              alt="Monkey Logo"
-              className="w-24 h-24 rounded-full"
-            />
-          </div>
-          <div className="p-4">
-            <NavigationPlaceholder />
-          </div>
-          <div className="p-4">
-            <CategoryListPlaceholder />
-          </div>
-          <div className="p-4">
-            <RecentPostsPlaceholder />
-          </div>
-          <div className="flex-grow"></div>
-          <div className="p-4 bg-red-700 flex justify-center items-center">
-            <FooterPlaceholder />
-          </div>
-        </aside>
+        <Sidebar FooterComponent={FooterPlaceholder} />
 
         {/* Main content */}
         <main
@@ -517,34 +496,10 @@ export default function Component() {
   );
 }
 
-function NavigationPlaceholder() {
+function FooterPlaceholder() {
   return (
-    <div className="bg-gray-700 p-4 rounded-lg">
-      <div className="h-6 w-3/4 bg-gray-600 rounded mb-2"></div>
-      <div className="h-6 w-1/2 bg-gray-600 rounded mb-2"></div>
-      <div className="h-6 w-2/3 bg-gray-600 rounded"></div>
-    </div>
-  );
-}
-
-function CategoryListPlaceholder() {
-  return (
-    <div className="bg-gray-700 p-4 rounded-lg">
-      <div className="h-6 w-full bg-gray-600 rounded mb-2"></div>
-      <div className="h-4 w-1/2 bg-gray-600 rounded mb-2"></div>
-      <div className="h-4 w-3/4 bg-gray-600 rounded mb-2"></div>
-      <div className="h-4 w-2/3 bg-gray-600 rounded"></div>
-    </div>
-  );
-}
-
-function RecentPostsPlaceholder() {
-  return (
-    <div className="bg-gray-700 p-4 rounded-lg">
-      <div className="h-6 w-full bg-gray-600 rounded mb-2"></div>
-      <div className="h-4 w-3/4 bg-gray-600 rounded mb-2"></div>
-      <div className="h-4 w-5/6 bg-gray-600 rounded mb-2"></div>
-      <div className="h-4 w-2/3 bg-gray-600 rounded"></div>
+    <div className="w-full h-10 bg-gray-700 rounded flex items-center justify-center">
+      <span className="text-gray-400 text-sm">Footer Placeholder</span>
     </div>
   );
 }
@@ -588,14 +543,6 @@ function NewsletterSignupPlaceholder() {
         Newsletter Signup Placeholder
       </span>
       <Mail className="w-5 h-5 text-gray-400" />
-    </div>
-  );
-}
-
-function FooterPlaceholder() {
-  return (
-    <div className="w-full h-10 bg-gray-700 rounded flex items-center justify-center">
-      <span className="text-gray-400 text-sm">Footer Placeholder</span>
     </div>
   );
 }
