@@ -1,46 +1,19 @@
-# The Curious Code Monkey
+![Renaissance imagery representing personal growth and transformation](./renaissance.webp)
 
-<p align="center">
-  <img src="https://i.ibb.co/wzPZB16/curious-code-monkey-github.png" width="900px" />
-</p>
+# Do Not Go Gentle
+
+A "How AI Saved My Life" Blog
+
+## Overview
+
+"Do Not Go Gentle" is a personal journal and blog documenting one individual’s journey of self-discovery, healing, and growth through the support of AI. Emerging from the depths of depression, this blog explores how using an AI as a "Second Brain" has helped reignite a passion for life, creativity, and mindful living.
+
+Each entry offers a raw, introspective look into how AI can serve as a guide, a sounding board, and a tool for rebuilding one’s life with intention and purpose. Whether you're looking for inspiration, connection, or practical advice on how to use AI for personal well-being, this blog aims to offer insights into the transformative potential of technology in the path to mental clarity and fulfillment.
+
+## Purpose
+
+"Do Not Go Gentle" serves as both a personal journal and a resource for others who may feel overwhelmed or lost. By sharing this journey, we hope to inspire others to explore the power of AI as a companion in their own lives, embracing technology to support mental health, creativity, and a more intentional approach to living.
+
+Stay tuned for posts covering topics from overcoming daily struggles to building a life rooted in mindful living, all supported by the evolving relationship between human and machine.
 
 ---
-
-<p>
- <img align="left" width="300" src="https://i.ibb.co/RhnggMH/2.png" alt="Coding gif" />
-
-**The Curious Code Monkey** is a blog documenting a self-taught developer’s journey through the world of coding principles, design patterns, and best practices. With a focus on clean, maintainable code alongside mindful living...
-
-This platform follows three guiding principles:
-
-- 🙊 **"Speak No Imperative"** — Embracing functional approaches over imperative code.
-- 🙉 **"Hear No Assumptions"** — Prioritizing clear, unambiguous code.
-- 🙈 **"See No Makeshift"** — Favoring robust solutions over quick fixes.
-</p>
-
-<br/>
-
-### Getting Started
-
-To set up and run the project locally, use the following commands:
-
-```bash
-npm install
-npx nx run curious-monkey:serve
-
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
