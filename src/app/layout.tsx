@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { DialogProvider } from "@/lib/providers/DialogProvider";
 
 const geistSans = localFont({
   src: "../lib/fonts/GeistVF.woff",
@@ -30,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <DialogProvider>{children}</DialogProvider>
       </body>
     </html>
   );
