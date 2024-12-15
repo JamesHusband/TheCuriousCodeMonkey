@@ -1,5 +1,6 @@
 import { useInView } from "@/lib/hooks/useInView";
 import Image from "next/image";
+import { getAssetPath } from "@/lib/utils";
 
 interface DomainSectionProps {
   title: string;
@@ -78,7 +79,7 @@ export function DomainSection({
               }`}
             >
               <Image
-                src={imageSrc}
+                src={getAssetPath(imageSrc)}
                 alt={imageAlt}
                 fill
                 className="object-contain p-4"
@@ -100,7 +101,7 @@ export function DomainSection({
               }`}
             >
               <Image
-                src={imageSrc}
+                src={getAssetPath(imageSrc)}
                 alt={imageAlt}
                 fill
                 className="object-contain p-4"

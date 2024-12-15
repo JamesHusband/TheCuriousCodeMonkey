@@ -3,6 +3,7 @@
 import { DomainSection } from "@/lib/components/domains/DomainSection";
 import { MainLayout } from "@/lib/components/layout/MainLayout";
 import Image from "next/image";
+import { getAssetPath } from "@/lib/utils";
 
 export default function HomePage() {
   return (
@@ -14,7 +15,7 @@ export default function HomePage() {
             <div className="float-left w-[38.2%] mr-16 animate-in fade-in duration-1000 delay-200">
               <div className="relative aspect-square">
                 <Image
-                  src="/assets/hello-world.png"
+                  src={getAssetPath("/assets/hello-world.png")}
                   alt="Hello World Monkey"
                   fill
                   className="object-contain"
