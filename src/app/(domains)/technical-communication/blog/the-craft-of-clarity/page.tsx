@@ -1,7 +1,6 @@
 "use client";
 
 import { MainLayout } from "@/lib/components/layout/MainLayout";
-import { Breadcrumbs, TopicTags } from "@/lib/components/navigation/Navigation";
 import { blogPosts } from "@/lib/taxonomy";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -16,13 +15,12 @@ export default function TheCraftOfClarityPage() {
         <div className="space-y-6">
           <div className="flex flex-col space-y-4">
             <Link
-              href={getAssetPath("/home")}
+              href={getAssetPath("/technical-communication")}
               className="inline-flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400"
             >
               <ArrowLeft className="w-5 h-5" />
-              <span>Back to Home</span>
+              <span>Back to Technical Communication</span>
             </Link>
-            <Breadcrumbs currentPath="/technical-communication/the-craft-of-clarity" />
           </div>
 
           <div className="space-y-4">
@@ -55,7 +53,6 @@ export default function TheCraftOfClarityPage() {
                 </p>
               </div>
             </div>
-            <TopicTags conceptIds={post.metadata.subject} />
           </div>
         </div>
 

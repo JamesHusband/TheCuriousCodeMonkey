@@ -38,6 +38,12 @@ export type Relationship = {
 export const taxonomy = {
   domains: [
     {
+      title: "Technical Documentation",
+      slug: "technical-documentation",
+      color: "blue",
+      topics: [],
+    },
+    {
       title: "Technical Communication",
       slug: "technical-communication",
       color: "red",
@@ -49,48 +55,59 @@ export const taxonomy = {
       ],
     },
     {
-      title: "System Architecture",
-      slug: "system-architecture",
-      color: "blue",
+      title: "Process Documentation and Workflows",
+      slug: "process-documentation",
+      color: "green",
       topics: [],
     },
     {
-      title: "Coding Patterns",
-      slug: "coding-patterns",
-      color: "green",
+      title: "Knowledge Organisation and Representation",
+      slug: "knowledge-organisation",
+      color: "purple",
+      topics: [],
+    },
+    {
+      title: "Visualisation and Modelling",
+      slug: "visualisation-modelling",
+      color: "orange",
+      topics: [],
+    },
+    {
+      title: "Tools and Automation",
+      slug: "tools-automation",
+      color: "yellow",
       topics: [],
     },
   ],
 };
 
-// Blog post metadata
-export const blogPosts = {
+export interface BlogPost {
+  metadata: {
+    title: string;
+    date: string;
+    creator: string;
+    subject: string[];
+    domain:
+      | "technical-documentation"
+      | "technical-communication"
+      | "process-documentation"
+      | "knowledge-organisation"
+      | "visualisation-modelling"
+      | "tools-automation";
+    excerpt: string;
+  };
+}
+
+export const blogPosts: Record<string, BlogPost> = {
   "the-craft-of-clarity": {
     metadata: {
-      title: "The Craft of Clarity: Writing Clean Code in a Complex World",
+      title: "The Craft of Clarity",
+      date: "2024-01-15",
       creator: "James Husband",
-      subject: ["clean-code", "writing-style", "technical-communication"],
-      description:
-        "An exploration of writing clear, maintainable code through the lens of technical communication.",
-      publisher: "The Curious Code Monkey",
-      date: "2023-12-14",
-      type: "BlogPosting",
-      format: "text/html",
-      identifier: "the-craft-of-clarity",
-      language: "en",
-      relation: ["readability", "maintainability", "clarity"],
-    } as DublinCore,
-    relationships: [
-      {
-        subject: "the-craft-of-clarity",
-        predicate: "implements",
-        object: "clean-code",
-      },
-      {
-        subject: "the-craft-of-clarity",
-        predicate: "discusses",
-        object: "technical-communication",
-      },
-    ] as Relationship[],
+      subject: ["technical-writing", "documentation", "best-practices"],
+      domain: "technical-communication",
+      excerpt:
+        "In the ever-evolving landscape of software development, one principle stands as a timeless beacon: clarity. As our systems grow more complex and our teams more distributed, the ability to write clear, understandable code becomes not just a virtue, but a necessity.",
+    },
   },
 };
