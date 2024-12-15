@@ -1,6 +1,7 @@
 import { taxonomyScheme, type Concept } from "@/lib/taxonomy";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 function findConcept(id: string): Concept | undefined {
   return taxonomyScheme.concepts.find((c) => c.id === id);
@@ -26,8 +27,10 @@ export function Navigation() {
   const topLevelConcepts = taxonomyScheme.concepts.filter((c) => !c.broader);
 
   return (
-    <nav className="space-y-4">
-      <h2 className="text-lg font-semibold text-white mb-4">Knowledge Base</h2>
+    <nav className="space-y-6">
+      <h2 className="text-lg font-semibold text-white mb-4">
+        Knowledge Domains
+      </h2>
       {topLevelConcepts.map((concept) => (
         <NavigationItem key={concept.id} concept={concept} />
       ))}
@@ -36,19 +39,35 @@ export function Navigation() {
 }
 
 function NavigationItem({ concept }: { concept: Concept }) {
+  const [isExpanded, setIsExpanded] = useState(true);
   const hasChildren = concept.narrower && concept.narrower.length > 0;
   const children = concept.narrower?.map((id) => findConcept(id)) ?? [];
 
   return (
     <div className="space-y-2">
-      <Link
-        href={`/topics/${concept.id}`}
-        className="text-gray-300 hover:text-white transition-colors block"
-      >
-        {concept.prefLabel}
-      </Link>
-      {hasChildren && (
-        <div className="pl-4 space-y-2">
+      <div className="flex items-center justify-between group">
+        <Link
+          href={`/topics/${concept.id}`}
+          className="text-gray-300 hover:text-white transition-colors flex-grow"
+        >
+          {concept.prefLabel}
+        </Link>
+        {hasChildren && (
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="p-1 text-gray-400 hover:text-white transition-colors"
+            aria-label={isExpanded ? "Collapse section" : "Expand section"}
+          >
+            {isExpanded ? (
+              <ChevronDown className="w-4 h-4" />
+            ) : (
+              <ChevronRight className="w-4 h-4" />
+            )}
+          </button>
+        )}
+      </div>
+      {hasChildren && isExpanded && (
+        <div className="pl-4 space-y-2 border-l border-gray-700">
           {children.map(
             (child) =>
               child && <NavigationItem key={child.id} concept={child} />

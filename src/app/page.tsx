@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Sidebar } from "@/lib/components/Sidebar";
+import { Terminal as TerminalComponent } from "@/lib/components/Terminal";
 
 export default function Component() {
   const [darkMode, setDarkMode] = useState(false);
@@ -144,7 +145,8 @@ export default function Component() {
     // Only close if clicking the backdrop itself, not its children
     if (e.target === e.currentTarget) {
       setIsCommandPaletteOpen(false);
-      setIsTerminalOpen(false);
+      // Don't close terminal on backdrop click
+      // setIsTerminalOpen(false);
     }
   };
 
@@ -247,27 +249,11 @@ export default function Component() {
       )}
 
       {/* Terminal Modal */}
-      {isTerminalOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          onClick={handleModalBackdropClick}
-        >
-          <div className="bg-[#1f2937] w-3/4 h-2/3 rounded-lg shadow-lg overflow-hidden">
-            <div className="flex items-center justify-between bg-gray-800 px-4 py-2">
-              <span className="text-gray-300">Terminal</span>
-              <button
-                onClick={toggleTerminal}
-                className="text-gray-400 hover:text-white"
-              >
-                ×
-              </button>
-            </div>
-            <div className="p-4 font-mono text-green-400 bg-black h-full">
-              <div>Welcome to The Curious Code Monkey Terminal...</div>
-            </div>
-          </div>
-        </div>
-      )}
+      <TerminalComponent
+        isOpen={isTerminalOpen}
+        onClose={toggleTerminal}
+        onBackdropClick={() => {}}
+      />
 
       {/* GNU Terry Pratchett Modal */}
       {isGnuModalOpen && (
@@ -431,8 +417,9 @@ export default function Component() {
           </div>
 
           <div className="p-8">
-            <div className="space-y-8">
-              <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-all duration-300 ease-in-out hover:shadow-lg">
+            {/* Featured Post */}
+            <div className="mb-12">
+              <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 transition-all duration-300 ease-in-out hover:shadow-lg">
                 <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-4">
                   <time dateTime="2023-12-14">December 14, 2023</time>
                   <span>•</span>
@@ -440,37 +427,33 @@ export default function Component() {
                   <span>•</span>
                   <span>Writing</span>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                   The Craft of Clarity: Writing Clean Code in a Complex World
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3">
+                <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg">
                   In the ever-evolving landscape of software development,
-                  writing clean code is more than just a best practice—it's an
-                  art form. This essay explores the principles of crafting
+                  writing clean code is more than just a best practice—it&apos;s
+                  an art form. This essay explores the principles of crafting
                   clear, maintainable code, drawing parallels between the
                   discipline of writing prose and the craft of programming.
-                  We'll delve into how clarity in code not only makes our work
-                  more maintainable but also more enjoyable for both ourselves
-                  and our fellow developers.
+                  We&apos;ll delve into how clarity in code not only makes our
+                  work more maintainable but also more enjoyable for both
+                  ourselves and our fellow developers.
                 </p>
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <img
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-kPKtHawIQ4HnJREMS9NfnjEqidHyqh.png"
-                      alt="Author"
-                      className="w-10 h-10 rounded-full"
-                    />
-                    <div>
-                      <p className="text-sm font-medium text-gray-900 dark:text-white">
-                        James Husband
-                      </p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Software Engineer
-                      </p>
-                    </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 text-sm bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300 rounded-full hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors cursor-pointer">
+                      Clean Code
+                    </span>
+                    <span className="px-3 py-1 text-sm bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors cursor-pointer">
+                      Best Practices
+                    </span>
+                    <span className="px-3 py-1 text-sm bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 rounded-full hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors cursor-pointer">
+                      Software Craftsmanship
+                    </span>
                   </div>
                   <Button
-                    className="bg-red-600 hover:bg-red-700 text-white"
+                    className="bg-red-600 hover:bg-red-700 text-white px-6 py-3"
                     onClick={() =>
                       window.open("/blog/the-craft-of-clarity", "_self")
                     }
@@ -479,12 +462,118 @@ export default function Component() {
                   </Button>
                 </div>
               </article>
-              {/* More blog posts will go here */}
             </div>
-          </div>
 
-          <div className="p-4">
-            <PaginationPlaceholder />
+            {/* Additional Posts Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-all duration-300 ease-in-out hover:shadow-lg">
+                <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                  <time dateTime="2023-12-13">December 13, 2023</time>
+                  <span>•</span>
+                  <span>15 min read</span>
+                  <span>•</span>
+                  <span>Architecture</span>
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                  System Architecture: Building Digital Cathedrals
+                </h2>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3">
+                  In the realm of software engineering, system architecture
+                  stands as our blueprint for digital cathedrals. Like master
+                  builders of old, we must balance form and function, stability
+                  and flexibility. This deep dive explores modern architectural
+                  patterns, from microservices to event-driven systems,
+                  examining how they shape the digital landscapes we create.
+                </p>
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 text-sm bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 rounded-full hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors cursor-pointer">
+                      System Design
+                    </span>
+                    <span className="px-3 py-1 text-sm bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300 rounded-full hover:bg-indigo-200 dark:hover:bg-indigo-900/50 transition-colors cursor-pointer">
+                      Microservices
+                    </span>
+                    <span className="px-3 py-1 text-sm bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors cursor-pointer">
+                      Scalability
+                    </span>
+                  </div>
+                  <Button
+                    className="bg-red-600 hover:bg-red-700 text-white"
+                    onClick={() =>
+                      window.open("/blog/system-architecture", "_self")
+                    }
+                  >
+                    Read More
+                  </Button>
+                </div>
+              </article>
+
+              <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-all duration-300 ease-in-out hover:shadow-lg">
+                <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                  <time dateTime="2023-12-12">December 12, 2023</time>
+                  <span>•</span>
+                  <span>12 min read</span>
+                  <span>•</span>
+                  <span>Process</span>
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                  The Art of Process: Orchestrating Software Development
+                </h2>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3">
+                  Process in software development is more than just a sequence
+                  of steps—it&apos;s the rhythm that orchestrates our creative
+                  endeavors. From agile methodologies to DevOps practices, this
+                  exploration delves into how well-designed processes can
+                  amplify team productivity while maintaining code quality.
+                </p>
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 text-sm bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300 rounded-full hover:bg-amber-200 dark:hover:bg-amber-900/50 transition-colors cursor-pointer">
+                      Agile
+                    </span>
+                    <span className="px-3 py-1 text-sm bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300 rounded-full hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors cursor-pointer">
+                      DevOps
+                    </span>
+                    <span className="px-3 py-1 text-sm bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300 rounded-full hover:bg-teal-200 dark:hover:bg-teal-900/50 transition-colors cursor-pointer">
+                      Team Collaboration
+                    </span>
+                  </div>
+                  <Button
+                    className="bg-red-600 hover:bg-red-700 text-white"
+                    onClick={() => window.open("/blog/art-of-process", "_self")}
+                  >
+                    Read More
+                  </Button>
+                </div>
+              </article>
+            </div>
+
+            {/* Pagination */}
+            <div className="mt-12 flex justify-center">
+              <nav
+                className="flex items-center space-x-2"
+                aria-label="Pagination"
+              >
+                <Button
+                  className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
+                  disabled
+                >
+                  Previous
+                </Button>
+                <Button className="bg-red-600 hover:bg-red-700 text-white">
+                  1
+                </Button>
+                <Button className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600">
+                  2
+                </Button>
+                <Button className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600">
+                  3
+                </Button>
+                <Button className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600">
+                  Next
+                </Button>
+              </nav>
+            </div>
           </div>
 
           <div className="p-4">
@@ -522,16 +611,6 @@ function FilterPlaceholder() {
         Filter Placeholder
       </span>
       <Filter className="w-5 h-5 text-gray-400" />
-    </div>
-  );
-}
-
-function PaginationPlaceholder() {
-  return (
-    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-center justify-center">
-      <span className="text-gray-600 dark:text-gray-300">
-        Pagination Placeholder
-      </span>
     </div>
   );
 }
