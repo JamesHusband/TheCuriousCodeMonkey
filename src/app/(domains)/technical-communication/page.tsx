@@ -8,7 +8,7 @@ import { getAssetPath } from "@/lib/utils";
 export default function TechnicalCommunicationPage() {
   // Filter posts for technical communication domain
   const techCommPosts = Object.entries(blogPosts).filter(
-    ([_, post]) => post.metadata.domain === "technical-communication"
+    ([, post]) => post.metadata.domain === "technical-communication"
   );
 
   return (

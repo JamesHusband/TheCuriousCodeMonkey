@@ -93,7 +93,7 @@ export function Terminal() {
       window.addEventListener("keydown", handleKeyDown);
     }
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isDialogOpen, currentCommand]);
+  }, [isDialogOpen, currentCommand, handleKeyDown]);
 
   if (!isDialogOpen("terminal")) return null;
 

@@ -31,25 +31,28 @@ export function GNUTerryPratchett() {
         </div>
         <div className="p-6 space-y-4">
           <p className="text-gray-300">
-            "A man is not dead while his name is still spoken." - Going Postal,
-            Chapter 4 prologue
+            &quot;A man is not dead while his name is still spoken.&quot; -
+            Going Postal, Chapter 4 prologue
           </p>
           <div className="space-y-4 text-gray-300">
             <p>
               GNU Terry Pratchett is a tribute to author Sir Terry Pratchett,
               who passed away in March 2015. The message is passed in the
-              "X-Clacks-Overhead" header, reminiscent of the "clacks"
-              communication system in his Discworld novels.
+              &quot;X-Clacks-Overhead&quot; header, reminiscent of the
+              &quot;clacks&quot; communication system in his Discworld novels.
             </p>
-            <p>In the Discworld, "GNU" represents a specific clacks code:</p>
+            <p>
+              In the Discworld, &quot;GNU&quot; represents a specific clacks
+              code:
+            </p>
             <ul className="list-disc pl-5 space-y-2">
               <li>G: Send the message on</li>
               <li>N: Do not log the message</li>
               <li>U: Turn the message around at the end of the line</li>
             </ul>
             <p>
-              This means Terry's name will be carried on forever through the
-              internet's "clacks" - our HTTP headers.
+              This means Terry&apos;s name will be carried on forever through
+              the internet&apos;s &quot;clacks&quot; - our HTTP headers.
             </p>
             <div className="mt-6 bg-gray-900 p-4 rounded-md">
               <code className="text-green-400">
