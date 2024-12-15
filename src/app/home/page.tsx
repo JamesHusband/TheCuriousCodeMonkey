@@ -15,8 +15,8 @@ export default function HomePage() {
             <div className="float-left w-[38.2%] mr-16 animate-in fade-in duration-1000 delay-200">
               <div className="relative aspect-square">
                 <Image
-                  src={getAssetPath("/assets/hello-world.png")}
-                  alt="Hello World Monkey"
+                  src={getAssetPath("/assets/monkey-head.webp")}
+                  alt="The Curious Code Monkey"
                   fill
                   className="object-contain"
                   sizes="500px"
@@ -50,13 +50,12 @@ export default function HomePage() {
             <div className="pt-16 mt-10 border-t border-gray-200 dark:border-gray-800">
               <div className="flex items-center justify-between text-gray-500 dark:text-gray-400 italic">
                 <p>
-                  P.S. While I update the project constantly, you can track the
-                  progress via{" "}
+                  P.S. Check out my other stuff on my github profile!{" "}
                   <a
-                    href="https://twitter.com/jameshusband"
+                    href="https://github.com/JamesHusband"
                     className="text-red-600 dark:text-red-400 hover:underline"
                   >
-                    Twwitter
+                    Github
                   </a>
                   .
                 </p>

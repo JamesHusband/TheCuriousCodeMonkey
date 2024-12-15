@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { getAssetPath } from "@/lib/utils";
 
 interface HeroProps {
   onAnimationComplete: () => void;
@@ -82,7 +83,7 @@ export function Hero({ onAnimationComplete }: HeroProps) {
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
           <div className="relative w-[500px] h-[500px] mx-auto mb-8">
             <Image
-              src="/assets/monkey-brain.webp"
+              src={getAssetPath("/assets/monkey-brain.webp")}
               alt="The Curious Code Monkey Brain"
               width={500}
               height={500}
@@ -99,7 +100,7 @@ export function Hero({ onAnimationComplete }: HeroProps) {
               }}
             >
               <Image
-                src="/assets/monkey-head.webp"
+                src={getAssetPath("/assets/monkey-head.webp")}
                 alt="The Curious Code Monkey Head"
                 width={500}
                 height={500}
