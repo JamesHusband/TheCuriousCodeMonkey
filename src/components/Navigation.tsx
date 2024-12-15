@@ -1,56 +1,40 @@
-import { taxonomyScheme, type Concept } from "@/lib/taxonomy";
+"use client";
+
+import { taxonomy } from "@/lib/taxonomy";
+import { getAssetPath } from "@/lib/utils";
 import Link from "next/link";
 import { ChevronRight, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
-function findConcept(id: string): Concept | undefined {
-  return taxonomyScheme.concepts.find((c) => c.id === id);
-}
-
-function getBreadcrumbPath(conceptId: string): Concept[] {
-  const path: Concept[] = [];
-  let current = findConcept(conceptId);
-
-  while (current) {
-    path.unshift(current);
-    if (current.broader && current.broader.length > 0) {
-      current = findConcept(current.broader[0]);
-    } else {
-      break;
-    }
-  }
-
-  return path;
-}
-
 export function Navigation() {
-  const topLevelConcepts = taxonomyScheme.concepts.filter((c) => !c.broader);
-
   return (
     <nav className="space-y-6">
       <h2 className="text-lg font-semibold text-white mb-4">
         Knowledge Domains
       </h2>
-      {topLevelConcepts.map((concept) => (
-        <NavigationItem key={concept.id} concept={concept} />
+      {taxonomy.domains.map((domain) => (
+        <NavigationItem key={domain.slug} domain={domain} />
       ))}
     </nav>
   );
 }
 
-function NavigationItem({ concept }: { concept: Concept }) {
+function NavigationItem({
+  domain,
+}: {
+  domain: (typeof taxonomy.domains)[number];
+}) {
   const [isExpanded, setIsExpanded] = useState(true);
-  const hasChildren = concept.narrower && concept.narrower.length > 0;
-  const children = concept.narrower?.map((id) => findConcept(id)) ?? [];
+  const hasChildren = domain.topics && domain.topics.length > 0;
 
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between group">
         <Link
-          href={`/topics/${concept.id}`}
+          href={getAssetPath(`/${domain.slug}`)}
           className="text-gray-300 hover:text-white transition-colors flex-grow"
         >
-          {concept.prefLabel}
+          {domain.title}
         </Link>
         {hasChildren && (
           <button
@@ -68,39 +52,69 @@ function NavigationItem({ concept }: { concept: Concept }) {
       </div>
       {hasChildren && isExpanded && (
         <div className="pl-4 space-y-2 border-l border-gray-700">
-          {children.map(
-            (child) =>
-              child && <NavigationItem key={child.id} concept={child} />
-          )}
+          {domain.topics.map((topic) => (
+            <Link
+              key={topic.slug}
+              href={getAssetPath(`/${domain.slug}/${topic.slug}`)}
+              className="block text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              {topic.title}
+            </Link>
+          ))}
         </div>
       )}
     </div>
   );
 }
 
-export function Breadcrumbs({ currentId }: { currentId: string }) {
-  const path = getBreadcrumbPath(currentId);
+export function Breadcrumbs({ currentPath }: { currentPath: string }) {
+  const pathParts = currentPath.split("/").filter(Boolean);
+  const breadcrumbs = pathParts.map((part, index) => {
+    const domain = taxonomy.domains.find((d) => d.slug === part);
+    if (domain) {
+      return {
+        title: domain.title,
+        href: getAssetPath(`/${part}`),
+      };
+    }
+
+    const parentDomain = taxonomy.domains.find((d) =>
+      d.topics?.some((t) => t.slug === part)
+    );
+    if (parentDomain) {
+      const topic = parentDomain.topics?.find((t) => t.slug === part);
+      return {
+        title: topic?.title || part,
+        href: getAssetPath(`/${parentDomain.slug}/${part}`),
+      };
+    }
+
+    return {
+      title: part,
+      href: getAssetPath(`/${pathParts.slice(0, index + 1).join("/")}`),
+    };
+  });
 
   return (
     <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
       <Link
-        href="/"
+        href={getAssetPath("/home")}
         className="hover:text-red-600 dark:hover:text-red-400 transition-colors"
       >
         Home
       </Link>
-      {path.map((concept, index) => (
-        <div key={concept.id} className="flex items-center space-x-2">
+      {breadcrumbs.map((crumb, index) => (
+        <div key={crumb.href} className="flex items-center space-x-2">
           <ChevronRight className="w-4 h-4" />
           <Link
-            href={`/topics/${concept.id}`}
+            href={crumb.href}
             className={`hover:text-red-600 dark:hover:text-red-400 transition-colors ${
-              index === path.length - 1
+              index === breadcrumbs.length - 1
                 ? "text-gray-700 dark:text-gray-200"
                 : ""
             }`}
           >
-            {concept.prefLabel}
+            {crumb.title}
           </Link>
         </div>
       ))}
@@ -112,18 +126,38 @@ export function TopicTags({ conceptIds }: { conceptIds: string[] }) {
   return (
     <div className="flex flex-wrap gap-2">
       {conceptIds.map((id) => {
-        const concept = findConcept(id);
-        if (!concept) return null;
+        const domain = taxonomy.domains.find((d) => d.slug === id);
+        if (domain) {
+          return (
+            <Link
+              key={id}
+              href={getAssetPath(`/${id}`)}
+              className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-red-600/10 text-red-600 dark:bg-red-400/10 dark:text-red-400 hover:bg-red-600/20 dark:hover:bg-red-400/20 transition-colors"
+            >
+              {domain.title}
+            </Link>
+          );
+        }
 
-        return (
-          <Link
-            key={id}
-            href={`/topics/${id}`}
-            className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-red-600/10 text-red-600 dark:bg-red-400/10 dark:text-red-400 hover:bg-red-600/20 dark:hover:bg-red-400/20 transition-colors"
-          >
-            {concept.prefLabel}
-          </Link>
+        const parentDomain = taxonomy.domains.find((d) =>
+          d.topics?.some((t) => t.slug === id)
         );
+        if (parentDomain) {
+          const topic = parentDomain.topics?.find((t) => t.slug === id);
+          if (topic) {
+            return (
+              <Link
+                key={id}
+                href={getAssetPath(`/${parentDomain.slug}/${id}`)}
+                className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-red-600/10 text-red-600 dark:bg-red-400/10 dark:text-red-400 hover:bg-red-600/20 dark:hover:bg-red-400/20 transition-colors"
+              >
+                {topic.title}
+              </Link>
+            );
+          }
+        }
+
+        return null;
       })}
     </div>
   );
