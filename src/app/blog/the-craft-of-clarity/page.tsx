@@ -1,7 +1,7 @@
 "use client";
 
-import { MainLayout } from "@/lib/components/MainLayout";
-import { Breadcrumbs, TopicTags } from "@/components/Navigation";
+import { MainLayout } from "@/features/layout/MainLayout";
+import { Breadcrumbs, TopicTags } from "@/features/navigation/Navigation";
 import { blogPosts } from "@/lib/taxonomy";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";

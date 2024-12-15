@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { Terminal, Command } from "lucide-react";
-import { Sidebar } from "@/lib/components/Sidebar";
-import { Terminal as TerminalComponent } from "@/lib/components/Terminal";
-import { GNUTerryPratchett } from "@/lib/components/GNUTerryPratchett";
+import { Sidebar } from "./Sidebar";
+import { Terminal as TerminalComponent } from "@/features/terminal/Terminal";
+import { GNUTerryPratchett } from "@/features/gnu-terry-pratchett/GNUTerryPratchett";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -103,18 +103,14 @@ export function MainLayout({ children }: MainLayoutProps) {
           onBackdropClick={handleModalBackdropClick}
         />
 
-        <div className="flex">
-          {/* Fixed Sidebar */}
-          <div className="fixed top-0 left-0 w-64 h-screen">
-            <Sidebar />
-          </div>
+        {/* Main Layout */}
+        <div className="flex min-h-screen">
+          <Sidebar />
 
           {/* Main Content Area */}
-          <div className="flex-1 ml-64">
-            <div className="min-h-screen pb-12">
-              <div className="text-gray-100">{children}</div>
-            </div>
-          </div>
+          <main className="flex-1 ml-[16.67%]">
+            <div className="text-gray-100 p-8 pb-20">{children}</div>
+          </main>
         </div>
 
         {/* Fixed Bottom Toolbar */}

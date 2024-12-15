@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Hero } from "./components/Hero";
+import { Hero } from "@/features/hero/Hero";
 
 export default function RootPage() {
   const router = useRouter();
