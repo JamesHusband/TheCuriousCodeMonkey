@@ -15,7 +15,7 @@ export default function HomePage() {
             <div className="float-left w-[38.2%] mr-16 animate-in fade-in duration-1000 delay-200">
               <div className="relative aspect-square">
                 <Image
-                  src={getAssetPath("/assets/monkey-head.webp")}
+                  src={getAssetPath("/assets/hello-world.png")}
                   alt="The Curious Code Monkey"
                   fill
                   className="object-contain"
