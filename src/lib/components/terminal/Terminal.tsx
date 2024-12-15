@@ -1,10 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+"use client";
 
-interface TerminalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onBackdropClick: (e: React.MouseEvent) => void;
-}
+import { useState, useRef, useEffect } from "react";
+import { useDialog } from "@/lib/providers/DialogProvider";
 
 interface TerminalCommand {
   command: string;
@@ -29,7 +26,8 @@ function VideoEmbed({ videoId }: { videoId: string }) {
   );
 }
 
-export function Terminal({ isOpen, onClose, onBackdropClick }: TerminalProps) {
+export function Terminal() {
+  const { isDialogOpen, closeDialog } = useDialog();
   const [history, setHistory] = useState<TerminalCommand[]>([
     {
       command: "",
@@ -91,18 +89,17 @@ export function Terminal({ isOpen, onClose, onBackdropClick }: TerminalProps) {
   };
 
   useEffect(() => {
-    if (isOpen) {
+    if (isDialogOpen("terminal")) {
       window.addEventListener("keydown", handleKeyDown);
     }
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, currentCommand]);
+  }, [isDialogOpen, currentCommand]);
 
-  if (!isOpen) return null;
+  if (!isDialogOpen("terminal")) return null;
 
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-      onClick={onBackdropClick}
       role="dialog"
       aria-modal="true"
       aria-label="Terminal"
@@ -114,7 +111,7 @@ export function Terminal({ isOpen, onClose, onBackdropClick }: TerminalProps) {
         <div className="flex items-center justify-between bg-gray-800 px-4 py-2">
           <span className="text-gray-300">Terminal</span>
           <button
-            onClick={onClose}
+            onClick={() => closeDialog("terminal")}
             className="text-gray-400 hover:text-white"
             aria-label="Close terminal"
           >
