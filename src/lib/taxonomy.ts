@@ -35,100 +35,32 @@ export type Relationship = {
 };
 
 // Main taxonomy scheme
-export const taxonomyScheme = {
-  id: "software-development",
-  title: "Software Development Knowledge Base",
-  concepts: [
+export const taxonomy = {
+  domains: [
     {
-      id: "technical-communication",
-      prefLabel: "Technical Communication",
-      narrower: ["documentation", "writing-style", "knowledge-sharing"],
-      inScheme: "software-development",
-    },
-    {
-      id: "documentation",
-      prefLabel: "Documentation",
-      broader: ["technical-communication"],
-      narrower: ["documentation-frameworks", "documentation-practices"],
-      inScheme: "software-development",
-    },
-    {
-      id: "writing-style",
-      prefLabel: "Writing Style",
-      broader: ["technical-communication"],
-      narrower: ["clarity", "conciseness", "audience-focus"],
-      inScheme: "software-development",
-    },
-    {
-      id: "knowledge-sharing",
-      prefLabel: "Knowledge Sharing",
-      broader: ["technical-communication"],
-      narrower: ["mentoring", "presentations", "code-reviews"],
-      inScheme: "software-development",
-    },
-    {
-      id: "system-architecture",
-      prefLabel: "System Architecture",
-      narrower: ["design-patterns", "scalability", "integration"],
-      inScheme: "software-development",
-    },
-    {
-      id: "design-patterns",
-      prefLabel: "Design Patterns",
-      broader: ["system-architecture"],
-      narrower: ["microservices", "event-driven", "domain-driven"],
-      inScheme: "software-development",
-    },
-    {
-      id: "scalability",
-      prefLabel: "Scalability",
-      broader: ["system-architecture"],
-      narrower: [
-        "horizontal-scaling",
-        "vertical-scaling",
-        "distributed-systems",
+      title: "Technical Communication",
+      slug: "technical-communication",
+      color: "red",
+      topics: [
+        {
+          title: "The Craft of Clarity",
+          slug: "the-craft-of-clarity",
+        },
       ],
-      inScheme: "software-development",
     },
     {
-      id: "integration",
-      prefLabel: "Integration",
-      broader: ["system-architecture"],
-      narrower: ["apis", "messaging", "data-integration"],
-      inScheme: "software-development",
+      title: "System Architecture",
+      slug: "system-architecture",
+      color: "blue",
+      topics: [],
     },
     {
-      id: "coding-patterns",
-      prefLabel: "Coding Patterns",
-      narrower: ["clean-code", "refactoring", "testing"],
-      inScheme: "software-development",
+      title: "Coding Patterns",
+      slug: "coding-patterns",
+      color: "green",
+      topics: [],
     },
-    {
-      id: "clean-code",
-      prefLabel: "Clean Code",
-      broader: ["coding-patterns"],
-      narrower: ["readability", "maintainability", "solid-principles"],
-      inScheme: "software-development",
-    },
-    {
-      id: "refactoring",
-      prefLabel: "Refactoring",
-      broader: ["coding-patterns"],
-      narrower: ["code-smells", "technical-debt", "modernization"],
-      inScheme: "software-development",
-    },
-    {
-      id: "testing",
-      prefLabel: "Testing",
-      broader: ["coding-patterns"],
-      narrower: [
-        "unit-testing",
-        "integration-testing",
-        "test-driven-development",
-      ],
-      inScheme: "software-development",
-    },
-  ] as Concept[],
+  ],
 };
 
 // Blog post metadata
