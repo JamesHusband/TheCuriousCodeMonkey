@@ -24,7 +24,7 @@ export function GNUTerryPratchett({
         <div className="relative">
           <div className="absolute top-0 right-0 w-1/3 h-full">
             <Image
-              src="/assets/bumblebee.webp"
+              src="/assets/bumblebee.png"
               alt="Bumblebee"
               fill
               className="object-cover opacity-10"

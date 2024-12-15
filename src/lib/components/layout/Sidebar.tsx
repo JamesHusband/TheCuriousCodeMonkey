@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Navigation } from "@/features/navigation/Navigation";
+import { Navigation } from "@/lib/components/navigation/Navigation";
 import { getAssetPath } from "@/lib/utils";
 
 export function Sidebar() {

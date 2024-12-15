@@ -1,6 +1,6 @@
 "use client";
 
-import { MainLayout } from "@/features/layout/MainLayout";
+import { MainLayout } from "@/lib/components/layout/MainLayout";
 import Image from "next/image";
 
 export default function HomePage() {

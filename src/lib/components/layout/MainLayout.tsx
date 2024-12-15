@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { Terminal, Command } from "lucide-react";
 import { Sidebar } from "./Sidebar";
-import { Terminal as TerminalComponent } from "@/features/terminal/Terminal";
-import { GNUTerryPratchett } from "@/features/gnu-terry-pratchett/GNUTerryPratchett";
+import { Terminal as TerminalComponent } from "@/lib/components/terminal/Terminal";
+import { GNUTerryPratchett } from "@/lib/components/modals/GNUTerryPratchett";
 
 interface MainLayoutProps {
   children: React.ReactNode;
