@@ -7,6 +7,68 @@ export default function HomePage() {
   return (
     <MainLayout>
       <div className="max-w-7xl mx-auto px-4 py-12 space-y-24">
+        {/* Welcome Section */}
+        <section className="relative max-w-5xl">
+          <div className="mb-16">
+            <div className="float-left w-[38.2%] mr-16">
+              <div className="relative aspect-square">
+                <Image
+                  src="/assets/hello-world.png"
+                  alt="Hello World Monkey"
+                  fill
+                  className="object-contain"
+                  sizes="500px"
+                  priority
+                />
+              </div>
+            </div>
+
+            <div className="pt-[9.5%]">
+              <h1 className="text-7xl font-bold text-gray-800 dark:text-gray-100">
+                Hello, world!
+              </h1>
+              <p className="text-2xl text-gray-700 dark:text-gray-200 mt-10 leading-relaxed">
+                <span className="font-semibold">The Curious Code Monkey</span>{" "}
+                makes it easy for you to discover everything you need to know
+                about technical documentation, communication, and knowledge
+                management.
+              </p>
+            </div>
+          </div>
+
+          <div className="clear-both space-y-10">
+            <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+              This site shows you the big picture, how all these subjects
+              intersect, work together, and remain relevant. We explore the
+              connections between technical writing, documentation patterns, and
+              communication principles that often remain unexplored. This is the
+              journey we embark on together.
+            </p>
+
+            <div className="pt-16 mt-10 border-t border-gray-200 dark:border-gray-800">
+              <div className="flex items-center justify-between text-gray-500 dark:text-gray-400 italic">
+                <p>
+                  P.S. While I update the project constantly, you can track the
+                  progress via{" "}
+                  <a
+                    href="https://twitter.com/jameshusband"
+                    className="text-red-600 dark:text-red-400 hover:underline"
+                  >
+                    Twitter
+                  </a>
+                  .
+                </p>
+                <div className="text-right">
+                  <p>— James Husband</p>
+                  <p className="text-sm">
+                    The curious monkey behind this project
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Technical Documentation Domain */}
         <section className="space-y-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
