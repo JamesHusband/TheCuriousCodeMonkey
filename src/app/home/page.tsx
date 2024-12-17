@@ -12,7 +12,27 @@ export default function HomePage() {
         {/* Welcome Section */}
         <section className="relative max-w-5xl animate-in fade-in duration-1000">
           <div className="mb-16">
-            <div className="float-left w-[38.2%] mr-16 animate-in fade-in duration-1000 delay-200">
+            {/* Mobile Layout */}
+            <div className="lg:hidden flex items-center gap-6 mb-8">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 shrink-0">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={getAssetPath("/assets/hello-world.png")}
+                    alt="The Curious Code Monkey"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 96px, 128px"
+                    priority
+                  />
+                </div>
+              </div>
+              <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 dark:text-gray-100">
+                Hello, world!
+              </h1>
+            </div>
+
+            {/* Desktop Layout */}
+            <div className="hidden lg:block float-left w-[38.2%] mr-16 animate-in fade-in duration-1000 delay-200">
               <div className="relative aspect-square">
                 <Image
                   src={getAssetPath("/assets/hello-world.png")}
@@ -25,11 +45,11 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="pt-[9.5%] animate-in fade-in duration-1000 delay-300">
-              <h1 className="text-7xl font-bold text-gray-800 dark:text-gray-100">
+            <div className="animate-in fade-in duration-1000 delay-300">
+              <h1 className="hidden lg:block text-7xl font-bold text-gray-800 dark:text-gray-100">
                 Hello, world!
               </h1>
-              <p className="text-2xl text-gray-700 dark:text-gray-200 mt-10 leading-relaxed">
+              <p className="text-xl sm:text-2xl text-gray-700 dark:text-gray-200 mt-6 lg:mt-10 leading-relaxed">
                 <span className="font-semibold">The Curious Code Monkey</span>{" "}
                 makes it easy for you to discover everything you need to know
                 about technical documentation, communication, and knowledge
@@ -39,7 +59,7 @@ export default function HomePage() {
           </div>
 
           <div className="clear-both space-y-10 animate-in fade-in duration-1000 delay-500">
-            <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
               This site shows you the big picture, how all these subjects
               intersect, work together, and remain relevant. We explore the
               connections between technical writing, documentation patterns, and
@@ -48,9 +68,9 @@ export default function HomePage() {
             </p>
 
             <div className="pt-16 mt-10 border-t border-gray-200 dark:border-gray-800">
-              <div className="flex items-center justify-between text-gray-500 dark:text-gray-400 italic">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-gray-500 dark:text-gray-400 italic gap-4">
                 <p>
-                  P.S. Check out my other stuff on my github profile!{" "}
+                  P.S. Check out my other stuff on my{" "}
                   <a
                     href="https://github.com/JamesHusband"
                     className="text-red-600 dark:text-red-400 hover:underline"
@@ -59,7 +79,7 @@ export default function HomePage() {
                   </a>
                   .
                 </p>
-                <div className="text-right">
+                <div className="text-left sm:text-right">
                   <p>— James Husband</p>
                   <p className="text-sm">
                     The curious monkey behind this project
