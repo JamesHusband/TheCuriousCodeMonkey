@@ -1,10 +1,9 @@
 "use client";
 
-import { useInView } from "@/lib/hooks/useInView";
+import { useInView } from "@/lib/hooks";
 import Image from "next/image";
 import Link from "next/link";
-import { getAssetPath } from "@/lib/utils";
-import { toSnakeCase } from "@/lib/utils/string";
+import { getAssetPath, toSnakeCase } from "@/lib/utils";
 
 interface DomainSectionProps {
   title: string;

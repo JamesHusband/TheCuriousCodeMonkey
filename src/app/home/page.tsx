@@ -1,8 +1,7 @@
 "use client";
 
-import { DomainSection } from "@/lib/components/domains/DomainSection";
-import { MainLayout } from "@/lib/components/layout/MainLayout";
 import Image from "next/image";
+import { DomainSection, MainLayout } from "@/lib/components";
 import { getAssetPath } from "@/lib/utils";
 
 export default function HomePage() {
@@ -89,7 +88,6 @@ export default function HomePage() {
             description="Your first branch in the knowledge jungle. Learn to spot patterns, analyze paths, and develop the mental agility needed for the journey ahead."
             imageSrc="/assets/thinking-models.webp"
             imageAlt="Thinking Models Monkey"
-            slug="thinking-models"
           />
 
           {/* Second branch: Map your surroundings */}
@@ -98,7 +96,6 @@ export default function HomePage() {
             description="Map the jungle of information around you. Master techniques to classify, structure, and navigate complex knowledge territories."
             imageSrc="/assets/knowledge-organisation.webp"
             imageAlt="Knowledge Organisation Monkey"
-            slug="knowledge-organisation"
           />
 
           {/* Third branch: Share your discoveries */}
@@ -107,7 +104,6 @@ export default function HomePage() {
             description="Call out to fellow explorers. Learn to share complex discoveries clearly, whether through writing, speaking, or teaching others."
             imageSrc="/assets/technical-communication.webp"
             imageAlt="Technical Communication Monkey"
-            slug="technical-communication"
           />
 
           {/* Fourth branch: Draw your maps */}
@@ -116,7 +112,6 @@ export default function HomePage() {
             description="Paint pictures of your jungle paths. Transform abstract concepts into clear visual guides that others can follow."
             imageSrc="/assets/visualisation-modelling.webp"
             imageAlt="Visualisation and Modelling Monkey"
-            slug="visualisation"
           />
 
           {/* Fifth branch: Chart the paths */}
@@ -125,7 +120,6 @@ export default function HomePage() {
             description="Mark the safe routes through complex territories. Create clear paths that others can follow through the knowledge jungle."
             imageSrc="/assets/process-documentation.webp"
             imageAlt="Process Documentation Monkey"
-            slug="process-documentation"
           />
 
           {/* Sixth branch: Craft your tools */}
@@ -134,7 +128,6 @@ export default function HomePage() {
             description="Craft tools for efficient jungle navigation. Build and master the implements that make your knowledge journey smoother."
             imageSrc="/assets/tools-automation.webp"
             imageAlt="Tools and Automation Monkey"
-            slug="tools-and-automation"
           />
         </div>
       </div>
