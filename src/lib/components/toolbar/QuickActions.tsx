@@ -8,7 +8,7 @@ export function QuickActions() {
   const { toggleDialog } = useDialog();
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className="hidden md:flex items-center space-x-4">
       <ToolbarButton
         onClick={() => toggleDialog("terminal")}
         icon={<Terminal className="w-5 h-5" />}

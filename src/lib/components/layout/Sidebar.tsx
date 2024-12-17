@@ -4,13 +4,17 @@ import Link from "next/link";
 import { Navigation } from "@/lib/components/navigation/Navigation";
 import { getAssetPath } from "@/lib/utils";
 
-export function Sidebar() {
+interface SidebarProps {
+  onClose?: () => void;
+}
+
+export function Sidebar({ onClose }: SidebarProps) {
   return (
-    <div className="fixed inset-y-0 left-0 w-1/6 min-h-screen">
-      <aside className="min-h-screen bg-gray-800 text-white flex flex-col">
-        {/* Fixed Header */}
-        <div className="shrink-0 p-3 bg-red-700">
-          <Link href={getAssetPath("/home")}>
+    <div className="h-full w-full">
+      <aside className="h-full bg-gray-800 text-white flex flex-col">
+        {/* Fixed Header - Only visible on desktop */}
+        <div className="hidden lg:block shrink-0 p-4 bg-red-700">
+          <Link href={getAssetPath("/home")} className="block">
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-kPKtHawIQ4HnJREMS9NfnjEqidHyqh.png"
               alt="Monkey Logo"
@@ -19,11 +23,16 @@ export function Sidebar() {
           </Link>
         </div>
 
-        {/* Scrollable Navigation */}
-        <div className="flex-1 overflow-y-auto">
-          <div className="p-3">
+        {/* Mobile Menu Header - Only visible on mobile */}
+        <div className="lg:hidden shrink-0 p-4 border-b border-gray-700">
+          <h2 className="text-xl font-semibold">Navigation</h2>
+        </div>
+
+        {/* Scrollable Navigation with touch support */}
+        <div className="flex-1 overflow-y-auto overscroll-contain touch-pan-y">
+          <nav className="p-4" onClick={onClose}>
             <Navigation />
-          </div>
+          </nav>
         </div>
       </aside>
     </div>

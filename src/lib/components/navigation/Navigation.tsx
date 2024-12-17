@@ -8,8 +8,8 @@ import { useState } from "react";
 
 export function Navigation() {
   return (
-    <nav className="space-y-6">
-      <h2 className="text-lg font-semibold text-white mb-4">
+    <nav className="space-y-8">
+      <h2 className="text-lg font-semibold text-white mb-6">
         Knowledge Domains
       </h2>
       {taxonomy.domains.map((domain) => (
@@ -28,35 +28,35 @@ function NavigationItem({
   const hasChildren = domain.topics && domain.topics.length > 0;
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <div className="flex items-center justify-between group">
         <Link
           href={getAssetPath(`/${domain.slug}`)}
-          className="text-gray-300 hover:text-white transition-colors flex-grow"
+          className="text-gray-300 hover:text-white transition-colors flex-grow py-2"
         >
           {domain.title}
         </Link>
         {hasChildren && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="p-1 text-gray-400 hover:text-white transition-colors"
+            className="p-2 text-gray-400 hover:text-white transition-colors"
             aria-label={isExpanded ? "Collapse section" : "Expand section"}
           >
             {isExpanded ? (
-              <ChevronDown className="w-4 h-4" />
+              <ChevronDown className="w-5 h-5" />
             ) : (
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-5 h-5" />
             )}
           </button>
         )}
       </div>
       {hasChildren && isExpanded && (
-        <div className="pl-4 space-y-2 border-l border-gray-700">
+        <div className="pl-4 space-y-3 border-l border-gray-700">
           {domain.topics.map((topic) => (
             <Link
               key={topic.slug}
               href={getAssetPath(`/${domain.slug}/${topic.slug}`)}
-              className="block text-sm text-gray-400 hover:text-white transition-colors"
+              className="block text-sm text-gray-400 hover:text-white transition-colors py-2"
             >
               {topic.title}
             </Link>
