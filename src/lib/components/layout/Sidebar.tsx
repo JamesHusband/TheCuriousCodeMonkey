@@ -11,9 +11,9 @@ interface SidebarProps {
 export function Sidebar({ onClose }: SidebarProps) {
   return (
     <div className="h-full w-full">
-      <aside className="h-full bg-gray-800 text-white flex flex-col">
+      <aside className="h-full bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white flex flex-col">
         {/* Fixed Header - Only visible on desktop */}
-        <div className="hidden lg:block shrink-0 p-4 bg-red-700">
+        <div className="hidden lg:block shrink-0 p-4 bg-red-600 dark:bg-red-700">
           <Link href={getAssetPath("/home")} className="block">
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-kPKtHawIQ4HnJREMS9NfnjEqidHyqh.png"
@@ -24,7 +24,7 @@ export function Sidebar({ onClose }: SidebarProps) {
         </div>
 
         {/* Mobile Menu Header - Only visible on mobile */}
-        <div className="lg:hidden shrink-0 p-4 border-b border-gray-700">
+        <div className="lg:hidden shrink-0 p-4 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-xl font-semibold">Navigation</h2>
         </div>
 

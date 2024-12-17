@@ -9,7 +9,7 @@ import { useState } from "react";
 export function Navigation() {
   return (
     <nav className="space-y-8">
-      <h2 className="text-lg font-semibold text-white mb-6">
+      <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">
         Knowledge Domains
       </h2>
       {taxonomy.domains.map((domain) => (
@@ -32,14 +32,14 @@ function NavigationItem({
       <div className="flex items-center justify-between group">
         <Link
           href={getAssetPath(`/${domain.slug}`)}
-          className="text-gray-300 hover:text-white transition-colors flex-grow py-2"
+          className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors flex-grow py-2"
         >
           {domain.title}
         </Link>
         {hasChildren && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="p-2 text-gray-400 hover:text-white transition-colors"
+            className="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
             aria-label={isExpanded ? "Collapse section" : "Expand section"}
           >
             {isExpanded ? (
@@ -51,12 +51,12 @@ function NavigationItem({
         )}
       </div>
       {hasChildren && isExpanded && (
-        <div className="pl-4 space-y-3 border-l border-gray-700">
+        <div className="pl-4 space-y-3 border-l border-gray-200 dark:border-gray-700">
           {domain.topics.map((topic) => (
             <Link
               key={topic.slug}
               href={getAssetPath(`/${domain.slug}/${topic.slug}`)}
-              className="block text-sm text-gray-400 hover:text-white transition-colors py-2"
+              className="block text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
             >
               {topic.title}
             </Link>

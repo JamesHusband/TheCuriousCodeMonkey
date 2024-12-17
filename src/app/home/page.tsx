@@ -8,58 +8,49 @@ import { getAssetPath } from "@/lib/utils";
 export default function HomePage() {
   return (
     <MainLayout>
-      <div className="max-w-7xl mx-auto px-4 py-12 space-y-24">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Welcome Section */}
-        <section className="relative max-w-5xl animate-in fade-in duration-1000">
+        <section className="relative max-w-5xl animate-in fade-in duration-1000 mb-16">
           <div className="mb-16">
             {/* Mobile Layout */}
-            <div className="lg:hidden flex items-center gap-6 mb-8">
-              <div className="w-24 h-24 sm:w-32 sm:h-32 shrink-0">
-                <div className="relative w-full h-full">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-16">
+              {/* Header Group (Image + Title) */}
+              <div className="flex items-center gap-6 lg:block">
+                <div className="relative w-20 h-20 sm:w-28 sm:h-28 lg:w-[400px] lg:h-[400px] shrink-0">
                   <Image
                     src={getAssetPath("/assets/hello-world.png")}
                     alt="The Curious Code Monkey"
                     fill
                     className="object-contain"
-                    sizes="(max-width: 640px) 96px, 128px"
+                    sizes="(max-width: 640px) 80px, (max-width: 768px) 112px, 400px"
                     priority
                   />
                 </div>
+                {/* Mobile-only title */}
+                <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-gray-100 lg:hidden">
+                  Welcome to The Curious Code Monkey!
+                </h1>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 dark:text-gray-100">
-                Hello, world!
-              </h1>
-            </div>
 
-            {/* Desktop Layout */}
-            <div className="hidden lg:block float-left w-[38.2%] mr-16 animate-in fade-in duration-1000 delay-200">
-              <div className="relative aspect-square">
-                <Image
-                  src={getAssetPath("/assets/hello-world.png")}
-                  alt="The Curious Code Monkey"
-                  fill
-                  className="object-contain"
-                  sizes="500px"
-                  priority
-                />
+              {/* Content */}
+              <div className="flex-1 animate-in fade-in duration-1000 delay-300">
+                {/* Desktop-only title */}
+                <h1 className="hidden lg:block text-7xl font-bold text-gray-800 dark:text-gray-100 mb-10">
+                  Welcome to The Curious Code Monkey!
+                </h1>
+                <p className="text-xl sm:text-2xl text-gray-700 dark:text-gray-200 leading-relaxed">
+                  <span className="font-semibold">The Curious Code Monkey</span>{" "}
+                  makes it easy for you to discover everything you need to know
+                  about technical documentation, communication, and knowledge
+                  management.
+                </p>
               </div>
-            </div>
-
-            <div className="animate-in fade-in duration-1000 delay-300">
-              <h1 className="hidden lg:block text-7xl font-bold text-gray-800 dark:text-gray-100">
-                Hello, world!
-              </h1>
-              <p className="text-xl sm:text-2xl text-gray-700 dark:text-gray-200 mt-6 lg:mt-10 leading-relaxed">
-                <span className="font-semibold">The Curious Code Monkey</span>{" "}
-                makes it easy for you to discover everything you need to know
-                about technical documentation, communication, and knowledge
-                management.
-              </p>
             </div>
           </div>
 
-          <div className="clear-both space-y-10 animate-in fade-in duration-1000 delay-500">
-            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+          <div className="animate-in fade-in duration-1000 delay-500">
+            {/* Desktop-only description */}
+            <p className="hidden lg:block text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-16">
               This site shows you the big picture, how all these subjects
               intersect, work together, and remain relevant. We explore the
               connections between technical writing, documentation patterns, and
@@ -67,7 +58,7 @@ export default function HomePage() {
               journey we embark on together.
             </p>
 
-            <div className="pt-16 mt-10 border-t border-gray-200 dark:border-gray-800">
+            <div className="pt-8 lg:pt-16 mt-6 lg:mt-10 border-t border-gray-200 dark:border-gray-800">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-gray-500 dark:text-gray-400 italic gap-4">
                 <p>
                   P.S. Check out my other stuff on my{" "}
@@ -90,56 +81,62 @@ export default function HomePage() {
           </div>
         </section>
 
-        <DomainSection
-          title="Technical Documentation"
-          description="Master the art of creating comprehensive technical documentation that serves as a reliable reference for users, developers, and stakeholders alike."
-          imageSrc="/assets/technical-documentation.webp"
-          imageAlt="Technical Documentation Monkey"
-          color="blue"
-        />
+        {/* Feature Cards Grid */}
+        <div className="grid grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+          {/* First branch: Get your bearings */}
+          <DomainSection
+            title="Thinking Models"
+            description="Your first branch in the knowledge jungle. Learn to spot patterns, analyze paths, and develop the mental agility needed for the journey ahead."
+            imageSrc="/assets/thinking-models.webp"
+            imageAlt="Thinking Models Monkey"
+            slug="thinking-models"
+          />
 
-        <DomainSection
-          title="Technical Communication"
-          description="Explore the art of conveying complex technical concepts with clarity and precision. Learn how to create documentation that bridges the gap between technical expertise and practical understanding."
-          imageSrc="/assets/technical-communication.webp"
-          imageAlt="Technical Communication Monkey"
-          color="red"
-          reversed
-        />
+          {/* Second branch: Map your surroundings */}
+          <DomainSection
+            title="Knowledge Organisation"
+            description="Map the jungle of information around you. Master techniques to classify, structure, and navigate complex knowledge territories."
+            imageSrc="/assets/knowledge-organisation.webp"
+            imageAlt="Knowledge Organisation Monkey"
+            slug="knowledge-organisation"
+          />
 
-        <DomainSection
-          title="Process Documentation and Workflows"
-          description="Document complex workflows and processes with clarity and precision, making them accessible and actionable for all team members."
-          imageSrc="/assets/process-documentation.webp"
-          imageAlt="Process Documentation Monkey"
-          color="green"
-        />
+          {/* Third branch: Share your discoveries */}
+          <DomainSection
+            title="Technical Communication"
+            description="Call out to fellow explorers. Learn to share complex discoveries clearly, whether through writing, speaking, or teaching others."
+            imageSrc="/assets/technical-communication.webp"
+            imageAlt="Technical Communication Monkey"
+            slug="technical-communication"
+          />
 
-        <DomainSection
-          title="Knowledge Organisation and Representation"
-          description="Learn effective strategies for organizing and representing knowledge in ways that enhance understanding and accessibility."
-          imageSrc="/assets/knowledge-organisation.webp"
-          imageAlt="Knowledge Organisation Monkey"
-          color="purple"
-          reversed
-        />
+          {/* Fourth branch: Draw your maps */}
+          <DomainSection
+            title="Visualisation"
+            description="Paint pictures of your jungle paths. Transform abstract concepts into clear visual guides that others can follow."
+            imageSrc="/assets/visualisation-modelling.webp"
+            imageAlt="Visualisation and Modelling Monkey"
+            slug="visualisation"
+          />
 
-        <DomainSection
-          title="Visualisation and Modelling"
-          description="Discover techniques for creating effective visual representations and models that communicate complex ideas clearly and intuitively."
-          imageSrc="/assets/visualisation-modelling.webp"
-          imageAlt="Visualisation and Modelling Monkey"
-          color="orange"
-        />
+          {/* Fifth branch: Chart the paths */}
+          <DomainSection
+            title="Process Documentation"
+            description="Mark the safe routes through complex territories. Create clear paths that others can follow through the knowledge jungle."
+            imageSrc="/assets/process-documentation.webp"
+            imageAlt="Process Documentation Monkey"
+            slug="process-documentation"
+          />
 
-        <DomainSection
-          title="Tools and Automation"
-          description="Explore tools and automation techniques that streamline documentation processes and enhance productivity in technical writing workflows."
-          imageSrc="/assets/tools-automation.webp"
-          imageAlt="Tools and Automation Monkey"
-          color="yellow"
-          reversed
-        />
+          {/* Sixth branch: Craft your tools */}
+          <DomainSection
+            title="Tools & Automation"
+            description="Craft tools for efficient jungle navigation. Build and master the implements that make your knowledge journey smoother."
+            imageSrc="/assets/tools-automation.webp"
+            imageAlt="Tools and Automation Monkey"
+            slug="tools-and-automation"
+          />
+        </div>
       </div>
     </MainLayout>
   );

@@ -15,9 +15,9 @@ export function MainLayout({ children }: MainLayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100">
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       {/* Mobile Header */}
-      <header className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-gray-800 border-b border-gray-700 flex items-center justify-between px-4 z-50">
+      <header className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-4 z-50">
         <Link href={getAssetPath("/home")} className="flex items-center">
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-kPKtHawIQ4HnJREMS9NfnjEqidHyqh.png"
@@ -28,7 +28,7 @@ export function MainLayout({ children }: MainLayoutProps) {
         </Link>
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+          className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
           aria-label="Toggle menu"
         >
           {isSidebarOpen ? (
@@ -41,7 +41,7 @@ export function MainLayout({ children }: MainLayoutProps) {
 
       {/* Desktop Sidebar */}
       <aside
-        className={`fixed top-0 right-0 h-screen w-[280px] bg-gray-800 border-l border-gray-700 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:left-0 lg:border-r lg:border-l-0 lg:w-64 z-40 ${
+        className={`fixed top-0 right-0 h-screen w-[280px] bg-gray-100 dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:left-0 lg:border-r lg:border-l-0 lg:w-64 z-40 ${
           isSidebarOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"
         }`}
       >
