@@ -165,30 +165,6 @@ export default function RootPage() {
                   imageSrc="/assets/tools-automation.webp"
                   imageAlt="Tools and Automation Monkey"
                 />
-
-                {/* Seventh branch: Placeholder for future content */}
-                <DomainSection
-                  title="Coming Soon"
-                  description="More exciting features and tools are on their way to help you navigate the knowledge jungle even better."
-                  imageSrc="/assets/monkey-brain.webp"
-                  imageAlt="Coming Soon Monkey"
-                />
-
-                {/* Eighth branch: Placeholder for future content */}
-                <DomainSection
-                  title="Stay Tuned"
-                  description="We're working on new ways to enhance your learning journey through the digital jungle."
-                  imageSrc="/assets/monkey-head.webp"
-                  imageAlt="Stay Tuned Monkey"
-                />
-
-                {/* Ninth branch: Placeholder for future content */}
-                <DomainSection
-                  title="Under Development"
-                  description="New tools and features are being crafted to make your knowledge exploration even more exciting."
-                  imageSrc="/assets/hello-world.png"
-                  imageAlt="Under Development Monkey"
-                />
               </div>
             </div>
           </MainLayout>
