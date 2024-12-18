@@ -121,7 +121,7 @@ export function Hero({ onAnimationComplete }: HeroProps) {
       // Handle transition after title is visible
       if (headProgress === 1 && titleVisible && isScrollingDown) {
         const titleProgress = Math.min(progress / window.innerHeight, 1);
-        if (titleProgress === 1) {
+        if (titleProgress > 0.5) {
           hasAnimated.current = true;
           onAnimationComplete();
         }
@@ -138,6 +138,12 @@ export function Hero({ onAnimationComplete }: HeroProps) {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
+      // Reset animation state on cleanup
+      hasAnimated.current = false;
+      if (monkeyHeadRef.current) {
+        monkeyHeadRef.current.style.transform = "";
+        monkeyHeadRef.current.style.opacity = "1";
+      }
     };
   }, [titleVisible, onAnimationComplete]);
 
@@ -147,7 +153,7 @@ export function Hero({ onAnimationComplete }: HeroProps) {
   }
 
   return (
-    <div className="hidden md:block min-h-screen overflow-hidden">
+    <div className="h-screen bg-background">
       <section className="relative h-screen flex flex-col items-center justify-center">
         <div className="absolute inset-0 flex">
           <div className="w-1/2 bg-red-700"></div>

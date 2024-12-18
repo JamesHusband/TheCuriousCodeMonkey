@@ -1,10 +1,6 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-
+/**
+ * Gets the correct asset path based on the environment.
+ */
 export function getAssetPath(path: string): string {
   // Check if we're in development or production
   const isDevelopment = process.env.NODE_ENV === "development";
