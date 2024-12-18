@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { DomainSection, MainLayout, Hero } from "@/lib/components";
 import { getAssetPath } from "@/lib/utils";
