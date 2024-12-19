@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { getAssetPath } from "@/lib/utils";
@@ -11,8 +11,10 @@ interface HeroProps {
 
 export function Hero({ onAnimationComplete }: HeroProps) {
   const monkeyHeadRef = useRef<HTMLDivElement>(null);
-  const lastScrollY = useRef(0);
   const hasAnimated = useRef(false);
+  const isFirstPhaseComplete = useRef(false);
+  const isAnimating = useRef(false);
+  const [showHead, setShowHead] = useState(true);
 
   // Check if device is mobile on mount
   useEffect(() => {
@@ -26,103 +28,89 @@ export function Hero({ onAnimationComplete }: HeroProps) {
     // Skip event listeners on mobile
     if (window.innerWidth < 768) return;
 
-    const handleScroll = (e: WheelEvent) => {
-      if (!hasAnimated.current) {
-        e.preventDefault();
+    const startFirstPhase = () => {
+      if (
+        !hasAnimated.current &&
+        !isFirstPhaseComplete.current &&
+        !isAnimating.current
+      ) {
+        isAnimating.current = true;
 
-        const scrollDelta = e.deltaY;
-        const newScrollY = Math.max(
-          0,
-          Math.min(lastScrollY.current + scrollDelta, window.innerHeight)
-        );
+        // Animate monkey head
+        if (monkeyHeadRef.current) {
+          monkeyHeadRef.current.style.transition =
+            "transform 1s ease-out, opacity 1s ease-out";
+          monkeyHeadRef.current.style.transform = "translateY(-100%)";
+          monkeyHeadRef.current.style.opacity = "0";
 
-        handleAnimationProgress(newScrollY, scrollDelta > 0);
-        lastScrollY.current = newScrollY;
+          // When first phase animation ends
+          setTimeout(() => {
+            setShowHead(false); // Remove head after animation
+            isFirstPhaseComplete.current = true;
+            isAnimating.current = false;
+          }, 1000);
+        }
       }
     };
 
-    // Add touch event handling
-    let touchStartY = 0;
-    let currentTouchY = 0;
-    let animationProgress = 0;
-    let isAnimating = false;
+    const startSecondPhase = () => {
+      if (
+        !hasAnimated.current &&
+        isFirstPhaseComplete.current &&
+        !isAnimating.current
+      ) {
+        isAnimating.current = true;
+        hasAnimated.current = true;
+        onAnimationComplete();
+      }
+    };
+
+    const handleInteraction = () => {
+      if (!isFirstPhaseComplete.current) {
+        startFirstPhase();
+      } else {
+        startSecondPhase();
+      }
+    };
+
+    const handleScroll = (e: WheelEvent) => {
+      e.preventDefault();
+      handleInteraction();
+    };
 
     const handleTouchStart = (e: TouchEvent) => {
       if (!hasAnimated.current) {
-        touchStartY = e.touches[0].clientY;
-        currentTouchY = touchStartY;
-        isAnimating = true;
-      }
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (!hasAnimated.current && isAnimating) {
         e.preventDefault();
-        currentTouchY = e.touches[0].clientY;
-        const touchDelta = touchStartY - currentTouchY;
-
-        // Scale the animation progress based on screen height
-        const scaledDelta =
-          (touchDelta / window.innerHeight) * window.innerHeight;
-        animationProgress = Math.max(
-          0,
-          Math.min(scaledDelta, window.innerHeight)
-        );
-
-        handleAnimationProgress(animationProgress, touchDelta > 0);
       }
     };
 
     const handleTouchEnd = () => {
-      if (!hasAnimated.current && isAnimating) {
-        // If we've scrolled up significantly, complete the animation
-        if (animationProgress > window.innerHeight * 0.3) {
-          hasAnimated.current = true;
-          onAnimationComplete();
-        }
-      }
-      isAnimating = false;
-      animationProgress = 0;
+      handleInteraction();
     };
 
-    const handleAnimationProgress = (
-      progress: number,
-      isScrollingDown: boolean
-    ) => {
-      // Calculate progress for monkey head animation (0 to 0.5)
-      const headProgress = Math.min(progress / (window.innerHeight * 0.5), 1);
-
-      // Update monkey head position and opacity
-      if (monkeyHeadRef.current) {
-        monkeyHeadRef.current.style.transform = `translateY(-${
-          headProgress * 100
-        }%)`;
-        monkeyHeadRef.current.style.opacity = `${1 - headProgress}`;
-      }
-
-      // Handle transition after head is gone
-      if (headProgress === 1 && isScrollingDown) {
-        const totalProgress = Math.min(progress / window.innerHeight, 1);
-        if (totalProgress > 0.5) {
-          hasAnimated.current = true;
-          onAnimationComplete();
-        }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        handleInteraction();
       }
     };
 
     window.addEventListener("wheel", handleScroll, { passive: false });
     window.addEventListener("touchstart", handleTouchStart, { passive: false });
-    window.addEventListener("touchmove", handleTouchMove, { passive: false });
     window.addEventListener("touchend", handleTouchEnd);
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       window.removeEventListener("wheel", handleScroll);
       window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("keydown", handleKeyDown);
       // Reset animation state on cleanup
       hasAnimated.current = false;
+      isFirstPhaseComplete.current = false;
+      isAnimating.current = false;
       if (monkeyHeadRef.current) {
+        monkeyHeadRef.current.style.transition = "";
         monkeyHeadRef.current.style.transform = "";
         monkeyHeadRef.current.style.opacity = "1";
       }
@@ -151,29 +139,31 @@ export function Hero({ onAnimationComplete }: HeroProps) {
               priority
               sizes="(max-width: 640px) 300px, (max-width: 768px) 400px, 500px"
             />
-            <div
-              ref={monkeyHeadRef}
-              className="absolute inset-0"
-              style={{
-                transform: "translateY(0)",
-                opacity: 1,
-                willChange: "transform, opacity",
-              }}
-            >
-              <Image
-                src={getAssetPath("/assets/monkey-head.png")}
-                alt="The Curious Code Monkey Head"
-                fill
-                className="object-contain"
-                priority
-                sizes="(max-width: 640px) 300px, (max-width: 768px) 400px, 500px"
-              />
-            </div>
+            {showHead && (
+              <div
+                ref={monkeyHeadRef}
+                className="absolute inset-0"
+                style={{
+                  willChange: "transform, opacity",
+                }}
+              >
+                <Image
+                  src={getAssetPath("/assets/monkey-head.png")}
+                  alt="The Curious Code Monkey Head"
+                  fill
+                  className="object-contain"
+                  priority
+                  sizes="(max-width: 640px) 300px, (max-width: 768px) 400px, 500px"
+                />
+              </div>
+            )}
           </div>
         </div>
         <div className="absolute bottom-8 z-10 text-white">
           <p className="text-sm mb-2 text-center text-gray-300 tracking-wider font-light">
-            Scroll to reveal
+            {isFirstPhaseComplete.current
+              ? "Scroll to continue"
+              : "Scroll to begin"}
           </p>
           <ChevronDown className="w-8 h-8 animate-bounce text-red-500" />
         </div>
