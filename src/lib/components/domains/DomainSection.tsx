@@ -53,7 +53,7 @@ export function DomainSection({
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <h2 className="text-xl sm:text-2xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-700 group-hover:scale-[1.02] transition-transform duration-300">
+            <h2 className="text-lg sm:text-xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-700 group-hover:scale-[1.02] transition-transform duration-300 whitespace-nowrap">
               {title}
             </h2>
             <p className="text-sm sm:text-base lg:text-xl text-gray-600 dark:text-gray-300">
