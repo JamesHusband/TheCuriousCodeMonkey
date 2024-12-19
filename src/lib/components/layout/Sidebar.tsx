@@ -14,7 +14,7 @@ export function Sidebar({ onClose }: SidebarProps) {
       <aside className="h-full bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white flex flex-col">
         {/* Fixed Header - Only visible on desktop */}
         <div className="hidden lg:block shrink-0 p-4 bg-red-600 dark:bg-red-700">
-          <Link href={getAssetPath("/home")} className="block">
+          <Link href={getAssetPath("/")} className="block">
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-kPKtHawIQ4HnJREMS9NfnjEqidHyqh.png"
               alt="Monkey Logo"

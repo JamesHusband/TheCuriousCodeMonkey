@@ -98,7 +98,7 @@ export function Breadcrumbs({ currentPath }: { currentPath: string }) {
   return (
     <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
       <Link
-        href={getAssetPath("/home")}
+        href={getAssetPath("/")}
         className="hover:text-red-600 dark:hover:text-red-400 transition-colors"
       >
         Home

@@ -6,13 +6,21 @@ import { DomainSection, MainLayout, Hero } from "@/lib/components";
 import { getAssetPath } from "@/lib/utils";
 
 export default function RootPage() {
-  const [showContent, setShowContent] = useState(false);
-  const [showHero, setShowHero] = useState(true);
+  const [showContent, setShowContent] = useState(() => {
+    // Skip animation if we're not on client or have seen the animation
+    if (typeof window === "undefined") return true;
+    return sessionStorage.getItem("hasSeenIntro") === "true";
+  });
+  const [showHero, setShowHero] = useState(() => !showContent);
   const contentRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
 
   const handleAnimationComplete = () => {
     setShowContent(true);
+    // Store that we've seen the animation
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("hasSeenIntro", "true");
+    }
     // Remove hero after transition
     setTimeout(() => {
       setShowHero(false);
