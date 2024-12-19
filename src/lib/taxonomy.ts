@@ -38,48 +38,122 @@ export type Relationship = {
 export const taxonomy = {
   domains: [
     {
-      title: "Technical Documentation",
-      slug: "technical-documentation",
-      color: "blue",
-      topics: [],
-    },
-    {
-      title: "Technical Communication",
-      slug: "technical-communication",
-      color: "red",
+      title: "Thinking Models",
+      slug: "thinking_models",
+      description:
+        "Learn to spot patterns, analyze paths, and develop the mental agility needed for the journey ahead.",
       topics: [
         {
-          title: "The Craft of Clarity",
-          slug: "the-craft-of-clarity",
+          title: "Pattern Recognition",
+          slug: "pattern_recognition",
+          description:
+            "Understanding and identifying recurring patterns in complex systems.",
+        },
+        {
+          title: "Mental Models",
+          slug: "mental_models",
+          description: "Frameworks for understanding and solving problems.",
         },
       ],
     },
     {
-      title: "Process Documentation and Workflows",
-      slug: "process-documentation",
-      color: "green",
-      topics: [],
+      title: "Knowledge Organisation",
+      slug: "knowledge_organisation",
+      description:
+        "Master techniques to classify, structure, and navigate complex knowledge territories.",
+      topics: [
+        {
+          title: "Information Architecture",
+          slug: "information_architecture",
+          description: "Structuring and organizing information effectively.",
+        },
+        {
+          title: "Knowledge Mapping",
+          slug: "knowledge_mapping",
+          description: "Creating visual representations of knowledge domains.",
+        },
+      ],
     },
     {
-      title: "Knowledge Organisation and Representation",
-      slug: "knowledge-organisation",
-      color: "purple",
-      topics: [],
+      title: "Technical Communication",
+      slug: "technical_communication",
+      description:
+        "Share complex discoveries clearly, whether through writing, speaking, or teaching others.",
+      topics: [
+        {
+          title: "Documentation Writing",
+          slug: "documentation_writing",
+          description: "Creating clear and effective technical documentation.",
+        },
+        {
+          title: "Knowledge Sharing",
+          slug: "knowledge_sharing",
+          description:
+            "Techniques for effectively sharing technical knowledge.",
+        },
+      ],
     },
     {
-      title: "Visualisation and Modelling",
-      slug: "visualisation-modelling",
-      color: "orange",
-      topics: [],
+      title: "Visualisation",
+      slug: "visualisation",
+      description:
+        "Transform abstract concepts into clear visual guides that others can follow.",
+      topics: [
+        {
+          title: "Data Visualization",
+          slug: "data_visualization",
+          description: "Representing data in visual formats.",
+        },
+        {
+          title: "Process Mapping",
+          slug: "process_mapping",
+          description:
+            "Creating visual representations of workflows and processes.",
+        },
+      ],
     },
     {
-      title: "Tools and Automation",
-      slug: "tools-automation",
-      color: "yellow",
-      topics: [],
+      title: "Process Documentation",
+      slug: "process_documentation",
+      description:
+        "Create clear paths that others can follow through the knowledge jungle.",
+      topics: [
+        {
+          title: "Workflow Design",
+          slug: "workflow_design",
+          description: "Designing and documenting efficient workflows.",
+        },
+        {
+          title: "Standard Operating Procedures",
+          slug: "standard_operating_procedures",
+          description: "Creating and maintaining SOPs.",
+        },
+      ],
+    },
+    {
+      title: "Tools & Automation",
+      slug: "tools_and_automation",
+      description:
+        "Build and master the implements that make your knowledge journey smoother.",
+      topics: [
+        {
+          title: "Documentation Tools",
+          slug: "documentation_tools",
+          description:
+            "Tools and platforms for creating and managing documentation.",
+        },
+        {
+          title: "Automation Techniques",
+          slug: "automation_techniques",
+          description:
+            "Automating documentation and knowledge management tasks.",
+        },
+      ],
     },
   ],
 };
+
+export type DomainSlug = (typeof taxonomy.domains)[number]["slug"];
 
 export interface BlogPost {
   metadata: {
@@ -87,27 +161,21 @@ export interface BlogPost {
     date: string;
     creator: string;
     subject: string[];
-    domain:
-      | "technical-documentation"
-      | "technical-communication"
-      | "process-documentation"
-      | "knowledge-organisation"
-      | "visualisation-modelling"
-      | "tools-automation";
+    domain: DomainSlug;
     excerpt: string;
   };
 }
 
 export const blogPosts: Record<string, BlogPost> = {
-  "the-craft-of-clarity": {
+  documentation_writing: {
     metadata: {
-      title: "The Craft of Clarity",
+      title: "The Art of Technical Documentation",
       date: "2024-01-15",
       creator: "James Husband",
       subject: ["technical-writing", "documentation", "best-practices"],
-      domain: "technical-communication",
+      domain: "technical_communication",
       excerpt:
-        "In the ever-evolving landscape of software development, one principle stands as a timeless beacon: clarity. As our systems grow more complex and our teams more distributed, the ability to write clear, understandable code becomes not just a virtue, but a necessity.",
+        "In the ever-evolving landscape of software development, one principle stands as a timeless beacon: clarity. As our systems grow more complex and our teams more distributed, the ability to write clear, understandable documentation becomes not just a virtue, but a necessity.",
     },
   },
 };
