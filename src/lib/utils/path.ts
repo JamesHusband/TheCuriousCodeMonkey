@@ -7,10 +7,11 @@ export function getAssetPath(path: string): string {
 
   // In development, use paths as is
   if (isDevelopment) {
-    return path;
+    return path.startsWith("/") ? path : `/${path}`;
   }
 
   // In production (GitHub Pages), add the repository name as base path
   const basePath = "/TheCuriousCodeMonkey";
-  return `${basePath}${path}`;
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return `${basePath}${normalizedPath}`;
 }

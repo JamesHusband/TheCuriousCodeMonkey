@@ -15,6 +15,7 @@ export function GNUTerryPratchett() {
     <div
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
       onClick={handleBackdropClick}
+      role="presentation"
     >
       <div className="bg-gray-800 w-2/3 max-w-2xl rounded-lg shadow-lg overflow-hidden">
         <div className="flex items-center justify-between bg-gray-700 px-4 py-2">

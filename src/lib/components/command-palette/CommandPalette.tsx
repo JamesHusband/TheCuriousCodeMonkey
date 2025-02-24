@@ -16,11 +16,15 @@ export function CommandPalette() {
     <div
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
       onClick={handleBackdropClick}
+      role="presentation"
     >
       <div className="bg-gray-800 w-2/3 rounded-lg shadow-lg overflow-hidden">
         <div className="p-4">
           <div className="flex items-center space-x-2 bg-gray-700 rounded-lg p-2">
-            <Command className="w-5 h-5 text-gray-400" />
+            <Command
+              className="w-5 h-5 text-gray-400"
+              data-testid="command-icon"
+            />
             <input
               type="text"
               placeholder="Type a command or search..."

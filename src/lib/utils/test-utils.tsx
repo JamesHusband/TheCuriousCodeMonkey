@@ -42,16 +42,26 @@ const localStorageMock = {
 };
 Object.defineProperty(window, "localStorage", { value: localStorageMock });
 
-const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
+// Mock sessionStorage
+const sessionStorageMock = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  clear: jest.fn(),
+  removeItem: jest.fn(),
+};
+Object.defineProperty(window, "sessionStorage", { value: sessionStorageMock });
+
+function AllTheProviders({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
       <DialogProvider>{children}</DialogProvider>
     </ThemeProvider>
   );
-};
+}
 
-const customRender = (ui: ReactElement, options = {}) =>
-  rtlRender(ui, { wrapper: AllTheProviders, ...options });
+function customRender(ui: ReactElement, options = {}) {
+  return rtlRender(ui, { wrapper: AllTheProviders, ...options });
+}
 
 // Re-export everything
 export * from "@testing-library/react";
